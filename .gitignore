@@ -1,0 +1,9 @@
+.DS_Store
+.idea/
+# Don't persist customizations
+*compose.override.y*ml
+# Don't persist env file with init admin password
+.env
+# Don't persist a data directory
+data/
+

@@ -1,0 +1,583 @@
+{
+    "authentication": {
+        "ldap": {
+            "enabled": false,
+            "ssl": false,
+            "hostname": "ldap.domain.com",
+            "port": 389,
+            "baseDn": "dc=company,dc=com",
+            "searchUserDn": "cn=reposilite,ou=admins,dc=domain,dc=com",
+            "searchUserPassword": "reposilite-admin-secret",
+            "typeAttribute": "person",
+            "userAttribute": "cn",
+            "userFilter": "(&(objectClass=person)(ou=Maven Users))",
+            "userType": "PERSISTENT"
+        }
+    },
+    "maven": {
+        "repositories": [
+            {
+                "id": "upstream",
+                "visibility": "PUBLIC",
+                "redeployment": true,
+                "preserveSnapshots": false,
+                "storageProvider": {
+                    "type": "fs",
+                    "quota": "100%",
+                    "mount": "",
+                    "maxResourceLockLifetimeInSeconds": 60
+                },
+                "storagePolicy": "PRIORITIZE_UPSTREAM_METADATA",
+                "metadataMaxAge": 1440,
+                "proxied": [
+                    {
+                        "reference": "maven-central",
+                        "store": false,
+                        "allowedGroups": [],
+                        "allowedExtensions": [
+                            ".jar",
+                            ".war",
+                            ".pom",
+                            ".xml",
+                            ".module",
+                            ".md5",
+                            ".sha1",
+                            ".sha256",
+                            ".sha512",
+                            ".asc",
+                            ".exe",
+                            ".kar",
+                            ".tar.gz",
+                            ".cfg"
+                        ],
+                        "connectTimeout": 3,
+                        "readTimeout": 15,
+                        "httpProxy": "",
+                        "authenticatedFetchingOnly": false
+                    },
+                    {
+                        "reference": "atlassian-public",
+                        "store": false,
+                        "allowedGroups": [],
+                        "allowedExtensions": [
+                            ".jar",
+                            ".war",
+                            ".pom",
+                            ".xml",
+                            ".module",
+                            ".md5",
+                            ".sha1",
+                            ".sha256",
+                            ".sha512",
+                            ".asc"
+                        ],
+                        "connectTimeout": 3,
+                        "readTimeout": 15,
+                        "httpProxy": "",
+                        "authenticatedFetchingOnly": false
+                    },
+                    {
+                        "reference": "codelibs",
+                        "store": false,
+                        "allowedGroups": [],
+                        "allowedExtensions": [
+                            ".jar",
+                            ".war",
+                            ".pom",
+                            ".xml",
+                            ".module",
+                            ".md5",
+                            ".sha1",
+                            ".sha256",
+                            ".sha512",
+                            ".asc"
+                        ],
+                        "connectTimeout": 3,
+                        "readTimeout": 15,
+                        "httpProxy": "",
+                        "authenticatedFetchingOnly": false
+                    },
+                    {
+                        "reference": "jaspersoft-third-party-ce",
+                        "store": false,
+                        "allowedGroups": [],
+                        "allowedExtensions": [
+                            ".jar",
+                            ".war",
+                            ".pom",
+                            ".xml",
+                            ".module",
+                            ".md5",
+                            ".sha1",
+                            ".sha256",
+                            ".sha512",
+                            ".asc"
+                        ],
+                        "connectTimeout": 3,
+                        "readTimeout": 15,
+                        "httpProxy": "",
+                        "authenticatedFetchingOnly": false
+                    },
+                    {
+                        "reference": "opennms-3rdparty",
+                        "store": false,
+                        "allowedGroups": [],
+                        "allowedExtensions": [
+                            ".jar",
+                            ".war",
+                            ".pom",
+                            ".xml",
+                            ".module",
+                            ".md5",
+                            ".sha1",
+                            ".sha256",
+                            ".sha512",
+                            ".asc"
+                        ],
+                        "connectTimeout": 3,
+                        "readTimeout": 15,
+                        "httpProxy": "",
+                        "authenticatedFetchingOnly": false
+                    },
+                    {
+                        "reference": "opennms-repo",
+                        "store": false,
+                        "allowedGroups": [],
+                        "allowedExtensions": [
+                            ".jar",
+                            ".war",
+                            ".pom",
+                            ".xml",
+                            ".module",
+                            ".md5",
+                            ".sha1",
+                            ".sha256",
+                            ".sha512",
+                            ".asc"
+                        ],
+                        "connectTimeout": 3,
+                        "readTimeout": 15,
+                        "httpProxy": "",
+                        "authenticatedFetchingOnly": false
+                    },
+                    {
+                        "reference": "shibboleth-releases",
+                        "store": false,
+                        "allowedGroups": [],
+                        "allowedExtensions": [
+                            ".jar",
+                            ".war",
+                            ".pom",
+                            ".xml",
+                            ".module",
+                            ".md5",
+                            ".sha1",
+                            ".sha256",
+                            ".sha512",
+                            ".asc"
+                        ],
+                        "connectTimeout": 3,
+                        "readTimeout": 15,
+                        "httpProxy": "",
+                        "authenticatedFetchingOnly": false
+                    },
+                    {
+                        "reference": "vaadin-addons",
+                        "store": false,
+                        "allowedGroups": [],
+                        "allowedExtensions": [
+                            ".jar",
+                            ".war",
+                            ".pom",
+                            ".xml",
+                            ".module",
+                            ".md5",
+                            ".sha1",
+                            ".sha256",
+                            ".sha512",
+                            ".asc"
+                        ],
+                        "connectTimeout": 3,
+                        "readTimeout": 15,
+                        "httpProxy": "",
+                        "authenticatedFetchingOnly": false
+                    },
+                    {
+                        "reference": "confluent.io",
+                        "store": false,
+                        "allowedGroups": [],
+                        "allowedExtensions": [
+                            ".jar",
+                            ".war",
+                            ".pom",
+                            ".xml",
+                            ".module",
+                            ".md5",
+                            ".sha1",
+                            ".sha256",
+                            ".sha512",
+                            ".asc"
+                        ],
+                        "connectTimeout": 3,
+                        "readTimeout": 15,
+                        "httpProxy": "",
+                        "authenticatedFetchingOnly": false
+                    }
+                ]
+            },
+            {
+                "id": "maven-central",
+                "visibility": "PUBLIC",
+                "redeployment": true,
+                "preserveSnapshots": false,
+                "storageProvider": {
+                    "type": "fs",
+                    "quota": "100%",
+                    "mount": "",
+                    "maxResourceLockLifetimeInSeconds": 60
+                },
+                "storagePolicy": "PRIORITIZE_UPSTREAM_METADATA",
+                "metadataMaxAge": 1440,
+                "proxied": [
+                    {
+                        "reference": "https://repo.maven.apache.org/maven2/",
+                        "store": true,
+                        "allowedGroups": [],
+                        "allowedExtensions": [
+                            ".jar",
+                            ".war",
+                            ".pom",
+                            ".xml",
+                            ".module",
+                            ".md5",
+                            ".sha1",
+                            ".sha256",
+                            ".sha512",
+                            ".asc",
+                            ".exe",
+                            ".kar",
+                            ".tar.gz",
+                            ".cfg"
+                        ],
+                        "connectTimeout": 3,
+                        "readTimeout": 15,
+                        "httpProxy": "",
+                        "authenticatedFetchingOnly": false
+                    }
+                ]
+            },
+            {
+                "id": "atlassian-public",
+                "visibility": "PUBLIC",
+                "redeployment": true,
+                "preserveSnapshots": false,
+                "storageProvider": {
+                    "type": "fs",
+                    "quota": "100%",
+                    "mount": "",
+                    "maxResourceLockLifetimeInSeconds": 60
+                },
+                "storagePolicy": "PRIORITIZE_UPSTREAM_METADATA",
+                "metadataMaxAge": 1440,
+                "proxied": [
+                    {
+                        "reference": "https://maven.artifacts.atlassian.com/",
+                        "store": true,
+                        "allowedGroups": [],
+                        "allowedExtensions": [
+                            ".jar",
+                            ".war",
+                            ".pom",
+                            ".xml",
+                            ".module",
+                            ".md5",
+                            ".sha1",
+                            ".sha256",
+                            ".sha512",
+                            ".asc"
+                        ],
+                        "connectTimeout": 3,
+                        "readTimeout": 15,
+                        "httpProxy": "",
+                        "authenticatedFetchingOnly": false
+                    }
+                ]
+            },
+            {
+                "id": "codelibs",
+                "visibility": "PUBLIC",
+                "redeployment": true,
+                "preserveSnapshots": false,
+                "storageProvider": {
+                    "type": "fs",
+                    "quota": "100%",
+                    "mount": "",
+                    "maxResourceLockLifetimeInSeconds": 60
+                },
+                "storagePolicy": "PRIORITIZE_UPSTREAM_METADATA",
+                "metadataMaxAge": 1440,
+                "proxied": [
+                    {
+                        "reference": "https://maven.codelibs.org/",
+                        "store": true,
+                        "allowedGroups": [],
+                        "allowedExtensions": [
+                            ".jar",
+                            ".war",
+                            ".pom",
+                            ".xml",
+                            ".module",
+                            ".md5",
+                            ".sha1",
+                            ".sha256",
+                            ".sha512",
+                            ".asc"
+                        ],
+                        "connectTimeout": 3,
+                        "readTimeout": 15,
+                        "httpProxy": "",
+                        "authenticatedFetchingOnly": false
+                    }
+                ]
+            },
+            {
+                "id": "jaspersoft-third-party-ce",
+                "visibility": "PUBLIC",
+                "redeployment": true,
+                "preserveSnapshots": false,
+                "storageProvider": {
+                    "type": "fs",
+                    "quota": "100%",
+                    "mount": "",
+                    "maxResourceLockLifetimeInSeconds": 60
+                },
+                "storagePolicy": "PRIORITIZE_UPSTREAM_METADATA",
+                "metadataMaxAge": 1440,
+                "proxied": [
+                    {
+                        "reference": "https://jaspersoft.jfrog.io/artifactory/third-party-ce-artifacts/",
+                        "store": true,
+                        "allowedGroups": [],
+                        "allowedExtensions": [
+                            ".jar",
+                            ".war",
+                            ".pom",
+                            ".xml",
+                            ".module",
+                            ".md5",
+                            ".sha1",
+                            ".sha256",
+                            ".sha512",
+                            ".asc"
+                        ],
+                        "connectTimeout": 3,
+                        "readTimeout": 15,
+                        "httpProxy": "",
+                        "authenticatedFetchingOnly": false
+                    }
+                ]
+            },
+            {
+                "id": "opennms-3rdparty",
+                "visibility": "PUBLIC",
+                "redeployment": true,
+                "preserveSnapshots": false,
+                "storageProvider": {
+                    "type": "fs",
+                    "quota": "100%",
+                    "mount": "",
+                    "maxResourceLockLifetimeInSeconds": 60
+                },
+                "storagePolicy": "PRIORITIZE_UPSTREAM_METADATA",
+                "metadataMaxAge": 1440,
+                "proxied": [
+                    {
+                        "reference": "https://archive.opennms.com/repo-maven/3rdparty/",
+                        "store": true,
+                        "allowedGroups": [],
+                        "allowedExtensions": [
+                            ".jar",
+                            ".war",
+                            ".pom",
+                            ".xml",
+                            ".module",
+                            ".md5",
+                            ".sha1",
+                            ".sha256",
+                            ".sha512",
+                            ".asc"
+                        ],
+                        "connectTimeout": 3,
+                        "readTimeout": 15,
+                        "httpProxy": "",
+                        "authenticatedFetchingOnly": false
+                    }
+                ]
+            },
+            {
+                "id": "opennms-repo",
+                "visibility": "PUBLIC",
+                "redeployment": true,
+                "preserveSnapshots": false,
+                "storageProvider": {
+                    "type": "fs",
+                    "quota": "100%",
+                    "mount": "",
+                    "maxResourceLockLifetimeInSeconds": 60
+                },
+                "storagePolicy": "PRIORITIZE_UPSTREAM_METADATA",
+                "metadataMaxAge": 1440,
+                "proxied": [
+                    {
+                        "reference": "https://archive.opennms.com/repo-maven/maven2/",
+                        "store": true,
+                        "allowedGroups": [],
+                        "allowedExtensions": [
+                            ".jar",
+                            ".war",
+                            ".pom",
+                            ".xml",
+                            ".module",
+                            ".md5",
+                            ".sha1",
+                            ".sha256",
+                            ".sha512",
+                            ".asc"
+                        ],
+                        "connectTimeout": 3,
+                        "readTimeout": 15,
+                        "httpProxy": "",
+                        "authenticatedFetchingOnly": false
+                    }
+                ]
+            },
+            {
+                "id": "shibboleth-releases",
+                "visibility": "PUBLIC",
+                "redeployment": true,
+                "preserveSnapshots": false,
+                "storageProvider": {
+                    "type": "fs",
+                    "quota": "100%",
+                    "mount": "",
+                    "maxResourceLockLifetimeInSeconds": 60
+                },
+                "storagePolicy": "PRIORITIZE_UPSTREAM_METADATA",
+                "metadataMaxAge": 1440,
+                "proxied": [
+                    {
+                        "reference": "https://build.shibboleth.net/maven/releases/",
+                        "store": true,
+                        "allowedGroups": [],
+                        "allowedExtensions": [
+                            ".jar",
+                            ".war",
+                            ".pom",
+                            ".xml",
+                            ".module",
+                            ".md5",
+                            ".sha1",
+                            ".sha256",
+                            ".sha512",
+                            ".asc"
+                        ],
+                        "connectTimeout": 3,
+                        "readTimeout": 15,
+                        "httpProxy": "",
+                        "authenticatedFetchingOnly": false
+                    }
+                ]
+            },
+            {
+                "id": "vaadin-addons",
+                "visibility": "PUBLIC",
+                "redeployment": true,
+                "preserveSnapshots": false,
+                "storageProvider": {
+                    "type": "fs",
+                    "quota": "100%",
+                    "mount": "",
+                    "maxResourceLockLifetimeInSeconds": 60
+                },
+                "storagePolicy": "PRIORITIZE_UPSTREAM_METADATA",
+                "metadataMaxAge": 1440,
+                "proxied": [
+                    {
+                        "reference": "https://maven.vaadin.com/vaadin-addons/",
+                        "store": true,
+                        "allowedGroups": [],
+                        "allowedExtensions": [
+                            ".jar",
+                            ".war",
+                            ".pom",
+                            ".xml",
+                            ".module",
+                            ".md5",
+                            ".sha1",
+                            ".sha256",
+                            ".sha512",
+                            ".asc"
+                        ],
+                        "connectTimeout": 3,
+                        "readTimeout": 15,
+                        "httpProxy": "",
+                        "authenticatedFetchingOnly": false
+                    }
+                ]
+            },
+            {
+                "id": "confluent.io",
+                "visibility": "PUBLIC",
+                "redeployment": true,
+                "preserveSnapshots": false,
+                "storageProvider": {
+                    "type": "fs",
+                    "quota": "100%",
+                    "mount": "",
+                    "maxResourceLockLifetimeInSeconds": 60
+                },
+                "storagePolicy": "PRIORITIZE_UPSTREAM_METADATA",
+                "metadataMaxAge": 1440,
+                "proxied": [
+                    {
+                        "reference": "https://packages.confluent.io/maven/",
+                        "store": true,
+                        "allowedGroups": [],
+                        "allowedExtensions": [
+                            ".jar",
+                            ".war",
+                            ".pom",
+                            ".xml",
+                            ".module",
+                            ".md5",
+                            ".sha1",
+                            ".sha256",
+                            ".sha512",
+                            ".asc"
+                        ],
+                        "connectTimeout": 3,
+                        "readTimeout": 15,
+                        "httpProxy": "",
+                        "authenticatedFetchingOnly": false
+                    }
+                ]
+            }
+        ]
+    },
+    "frontend": {
+        "id": "mvn.cdn.useast1.opennms.com",
+        "title": "🇺🇸 Maven CDN in US East 1",
+        "description": "Maven CDN Server: mvn.cdn.useast1.opennms.com",
+        "organizationWebsite": "https://github.com/opennms",
+        "organizationLogo": "https://avatars.githubusercontent.com/u/2972482?s=200&v=4",
+        "icpLicense": ""
+    },
+    "statistics": {
+        "enabled": true,
+        "resolvedRequestsInterval": "WEEKLY"
+    },
+    "web": {
+        "forwardedIp": "X-Forwarded-For"
+    }
+}
+

@@ -1,37 +1,65 @@
-# JFrog as a local Maven proxy building OpenNMS
+# Local Maven cache for building OpenNMS
 
-This repository is used to setup a local JFrog instance to cache Maven artifacts which are downloaded during a build from OpenNMS.
+This repository is used to setup a local [Reposilite](https://reposilite.com/) instance to cache Maven artifacts which are downloaded during a build from public Maven repositories.
+A local cache for Maven artifacts can have several benefits:
+* Remove intermediate dependencies from public remote repositories
+* Speedup downloads for artifacts in geographics other than North America or when you have low network connectivity bandwidth
 
-## Installation and Usage
+## 👮 Requirements
 
-**Step 1**: Checkout the Docker Compose file and start the service
+* Docker with the Docker Compose plugin
+* Optional: TLS reverse proxy if is exposed to the public internet
+* Data is stored as a bind mount in `./data`, change if you want a different path for persisting the data. 
+
+## 👩‍🏭 Installation and Usage
+
+**Step 1**: Checkout the repository and switch working directory
 
 ```shell
-git clone https://github.com/opennms-forge/docker-jfrog-proxy.git
-cd docker-jfrog-proxy
+git clone https://github.com/opennms-forge/maven-cache
+cd maven-cache
+```
+
+**Step 2**: Set a secure initial admin password
+
+```shell
+cp env.sample .env
+vi .env
+```
+Set a secure init admin password and save the file:
+
+```shell
+REPOSILITE_COMPOSE_OPTS=--token admin:<change-me>
+```
+
+**Step 3**: Start the service with
+
+```shell
 docker-compose up -d
 ```
 
-**Step 2**: Initial setup
+## 👩‍🔧 Install a Systemd service unit
 
-Navigate to http://localhost:8081 and set a password and finish initialization wizard.
-
-**Step 3**: Configure repositories
-
-Login with an admin account to JFrog and go to "Admin -> Advanced -> Config Descriptor" and overwrite
-with the content from the file in the repository `config-descriptor.xml`.
-
-**Step 4**: Configure your maven to use the proxy
-
-Copy the `sample-settings.xml` to your local Maven home as `~/.m2/settings.xml`.
-
-**Step 5**: Fill the cache with the first build of OpenNMS
-
-```
-git clone https://github.com/OpenNMS/opennms.git
-cd opennms
-./clean.pl && ./compile.pl -U -DskipTests && ./assemble.pl -Dopennms.home=/opt/opennms -DskipTests
+```shell
+cp maven-cdn.service /etc/systemd/system
+systemctl daemon-reload
+systemctl enable --now maven-cdn
 ```
 
-The first run downloads all artifacts from the internet and can take a while.
-Any following build will run against a populated cache which is served quickly over localhost.
+## 🕹️ Use cache with Maven
+
+Create a `settings.xml` file for Maven with the following content:
+
+```xml
+<settings>
+    <mirrors>
+        <mirror>
+            <id>{My-Maven-ID}</id>
+            <name>{My-Name-For-This-Service}</name>
+            <url>{My-Maven-http(s)://my-host-or-FQDN}/upstream</url>
+            <mirrorOf>*</mirrorOf>
+        </mirror>
+    </mirrors>
+</settings>
+```
+You can use it globally for Maven if you create this file in `~/.m2/settings.xml` or specifically by using `mvn --settings /path/to/my/settings.xml`.

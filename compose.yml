@@ -1,0 +1,17 @@
+---
+services:
+  maven-cdn:
+    image: ghcr.io/dzikoysk/reposilite:3.5.23
+    env_file:
+      - .env
+    environment:
+      JAVA_OPTS: -Xmx${MEMORY} ${JAVA_COMPOSE_OPTS}
+      REPOSILITE_OPTS: --port ${PORT} ${REPOSILITE_COMPOSE_OPTS}
+    volumes:
+      - ./data:/app/data
+      - ./shared.configuration.json:/shared.configuration.json
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    ports:
+      - "8080:8080/tcp"
