@@ -1,18 +1,18 @@
 {
-    "authentication": {
-        "ldap": {
-            "enabled": false,
-            "ssl": false,
-            "hostname": "ldap.domain.com",
-            "port": 389,
-            "baseDn": "dc=company,dc=com",
-            "searchUserDn": "cn=reposilite,ou=admins,dc=domain,dc=com",
-            "searchUserPassword": "reposilite-admin-secret",
-            "typeAttribute": "person",
-            "userAttribute": "cn",
-            "userFilter": "(&(objectClass=person)(ou=Maven Users))",
-            "userType": "PERSISTENT"
-        }
+    "frontend": {
+        "id": "mvn.cdn.useast1.opennms.com",
+        "title": "🇺🇸 Maven CDN in US East 1",
+        "description": "Maven CDN Server: mvn.cdn.useast1.opennms.com",
+        "organizationWebsite": "https://github.com/opennms",
+        "organizationLogo": "https://avatars.githubusercontent.com/u/2972482?s=200&v=4",
+        "icpLicense": ""
+    },
+    "web": {
+        "forwardedIp": "X-Forwarded-For"
+    },
+    "statistics": {
+        "enabled": true,
+        "resolvedRequestsInterval": "WEEKLY"
     },
     "maven": {
         "repositories": [
@@ -222,6 +222,9 @@
                         "readTimeout": 15,
                         "httpProxy": "",
                         "authenticatedFetchingOnly": false
+                    },
+                    {
+                        "reference": "restled-talend"
                     }
                 ]
             },
@@ -561,23 +564,33 @@
                         "authenticatedFetchingOnly": false
                     }
                 ]
+            },
+            {
+                "id": "restled-talend",
+                "redeployment": true,
+                "metadataMaxAge": 1440,
+                "proxied": [
+                    {
+                        "reference": "https://maven.restlet.talend.com/",
+                        "store": true
+                    }
+                ]
             }
         ]
     },
-    "frontend": {
-        "id": "mvn.cdn.useast1.opennms.com",
-        "title": "🇺🇸 Maven CDN in US East 1",
-        "description": "Maven CDN Server: mvn.cdn.useast1.opennms.com",
-        "organizationWebsite": "https://github.com/opennms",
-        "organizationLogo": "https://avatars.githubusercontent.com/u/2972482?s=200&v=4",
-        "icpLicense": ""
-    },
-    "statistics": {
-        "enabled": true,
-        "resolvedRequestsInterval": "WEEKLY"
-    },
-    "web": {
-        "forwardedIp": "X-Forwarded-For"
+    "authentication": {
+        "ldap": {
+            "enabled": false,
+            "ssl": false,
+            "hostname": "ldap.domain.com",
+            "port": 389,
+            "baseDn": "dc=company,dc=com",
+            "searchUserDn": "cn=reposilite,ou=admins,dc=domain,dc=com",
+            "searchUserPassword": "reposilite-admin-secret",
+            "typeAttribute": "person",
+            "userAttribute": "cn",
+            "userFilter": "(&(objectClass=person)(ou=Maven Users))",
+            "userType": "PERSISTENT"
+        }
     }
 }
-
