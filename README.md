@@ -63,3 +63,18 @@ Create a `settings.xml` file for Maven with the following content:
 </settings>
 ```
 You can use it globally for Maven if you create this file in `~/.m2/settings.xml` or specifically by using `mvn --settings /path/to/my/settings.xml`.
+
+If you want to use the public OpenNMS Maven caching instance create the `~/.m2/settings.xml` with the following content:
+
+```xml
+<settings>
+    <mirrors>
+        <mirror>
+            <id>mvn.cdn.useast1.opennms.com-cache</id>
+            <name>🇺🇸 Maven CDN in US East 1</name>
+            <url>https://mvn.cdn.useast1.opennms.com/cache</url>
+            <mirrorOf>*</mirrorOf>
+        </mirror>
+    </mirrors>
+</settings>
+```
